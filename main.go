@@ -10,6 +10,10 @@ import (
 	fz "github.com/merxer/fizzbuzz/fizzbuzz"
 )
 
+type Result struct {
+	Message string `json:"message"`
+}
+
 func main() {
 	// Echo instance
 	e := echo.New()
@@ -27,10 +31,16 @@ func main() {
 		n := c.Param("number")
 		num, err := strconv.Atoi(n)
 		if err != nil {
-			return c.String(http.StatusOK, "Please input number")
+			result := Result{
+				Message: "Please input number",
+			}
+			return c.JSON(http.StatusBadRequest, result)
 		}
 		fizzbuzz := fz.FizzBuzz(num)
-		return c.String(http.StatusOK, ""+fizzbuzz)
+		result := Result{
+			Message: fizzbuzz,
+		}
+		return c.JSON(http.StatusOK, result)
 	})
 
 	// Start server
