@@ -5,7 +5,7 @@ import (
 )
 
 func FizzBuzz(n int) string {
-	if n == 3 || n == 6 || n == 9 {
+	if n % 3 == 0 {
 		return "Fizz"
 	}
 	if n == 5 {
