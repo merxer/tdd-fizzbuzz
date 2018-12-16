@@ -1,6 +1,5 @@
 package main
 
-
 import (
 	"net/http"
 	"strconv"
@@ -26,9 +25,12 @@ func main() {
 
 	e.GET("/fizzbuzz/:number", func(c echo.Context) error {
 		n := c.Param("number")
-		num, _  := strconv.Atoi(n)
-	        fizzbuzz := fz.FizzBuzz(num)
-	        return c.String(http.StatusOK, "" + fizzbuzz )
+		num, err := strconv.Atoi(n)
+		if err != nil {
+			return c.String(http.StatusOK, "Please input number")
+		}
+		fizzbuzz := fz.FizzBuzz(num)
+		return c.String(http.StatusOK, ""+fizzbuzz)
 	})
 
 	// Start server
