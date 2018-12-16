@@ -64,3 +64,11 @@ func TestFizzBuzzTenShouldGetBuzz(t *testing.T){
 		t.Errorf("It should return %s but got %s", expected, result)
 	}
 }
+
+func TestFizzBuzzTwelveShouldGetFizz(t *testing.T){
+	result := FizzBuzz(12)
+	expected := "Fizz"
+	if result != expected {
+		t.Errorf("It should return %s but got %s", expected, result)
+	}
+}
